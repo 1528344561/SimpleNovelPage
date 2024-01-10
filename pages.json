@@ -1,9 +1,19 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "uni-app"
+			}
+		},{
+			"path": "pages/index/login",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},{
+			"path": "pages/index/read",
+			"style": {
+				"navigationBarTitleText": "SimpleNovel"
 			}
 		}
 	],
@@ -13,5 +23,8 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	}
 }
