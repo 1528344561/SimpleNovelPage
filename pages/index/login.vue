@@ -1,3 +1,5 @@
 <template>
-    1231231
+    <view class="">
+    	
+    </view>
 </template>
