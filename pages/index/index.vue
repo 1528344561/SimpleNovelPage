@@ -4,6 +4,10 @@
 			<view class="home-title">
 				书架
 			</view>
+
+			<image>
+				
+			</image>
 		</view>
 	</view>
 </template>
@@ -11,12 +15,14 @@
 <script>
 	export default{
 		data(){
-			books:[{
+			return{
+				books:[{
 				id:0,
-				bookImg:'',
-				
+				bookImg:'../../static/book/book_0.png',
+
 			}
 			]
+			}
 		},
 		methods:{
 
