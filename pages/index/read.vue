@@ -8,7 +8,7 @@
                 {{ capter.capterTitle }}
             </view>
             <view class="page-content">
-                <div :v-html="capter.capterContent"></div>
+                <!-- <div :v-html="capter.capterContent"></div> -->
                 {{ capter.capterContent }}
             </view>
         </view>
@@ -27,6 +27,7 @@
             return {
                 book:{
                     id:0,
+                    bookname:"抗战",
                     capterTotalNum:10,
                     capterUserNum:1,
                 },

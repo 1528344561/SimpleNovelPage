@@ -26,5 +26,30 @@
 	"uniIdRouter": {},
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
-	}
+	},
+	"tabBar": {
+		"list": [
+		  {
+			"pagePath": "pages/index/index",
+			"text": "首页",
+			"iconfont": {
+			  "text": "\ue102",
+			  "selectedText": "\ue103",
+			  "fontSize": "17px",
+			  "color": "#000000",
+			  "selectedColor": "#0000ff"
+			}
+		  },{
+			"pagePath": "pages/index/index",
+			"text": "我的",
+			"iconfont": {
+			  "text": "\ue102",
+			  "selectedText": "\ue103",
+			  "fontSize": "17px",
+			  "color": "#000000",
+			  "selectedColor": "#0000ff"
+			}
+		  }
+		]
+	  }
 }
