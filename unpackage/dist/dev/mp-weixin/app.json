@@ -20,7 +20,7 @@
         "selectedIconPath": "static/home_selected.png"
       },
       {
-        "pagePath": "pages/index/mine",
+        "pagePath": "pages/index/login",
         "text": "我的",
         "iconPath": "static/user_default.png",
         "selectedIconPath": "static/user_selected.png"
