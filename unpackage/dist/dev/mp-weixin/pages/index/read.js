@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -190,7 +190,9 @@ var _capter = __webpack_require__(/*! @/api/capter.js */ 186);
 var _default = {
   onLoad: function onLoad(options) {
     var _this = this;
-    console.log(options.bookId);
+    uni.showLoading({
+      title: '正在加载中...'
+    }), console.log(options.bookId);
     console.log(options.bookName);
     this.bookId = options.bookId;
     // getUserReadingCapter()
@@ -199,6 +201,7 @@ var _default = {
       // console.log(res.data.)
       (0, _capter.getCapter)(_this.bookId, _this.nowCapterId).then(function (res) {
         _this.nowCapter = res.data;
+        uni.hideLoading();
       });
     });
   },
@@ -280,6 +283,7 @@ var _default = {
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

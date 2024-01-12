@@ -180,7 +180,7 @@ var _default = {
       isRegister: false,
       showText: "登录",
       flag: 0,
-      ico: ['/static/eye-close.png', '/static/eye-open.png'],
+      ico: ['../../static/by.png', '../../static/zy.png'],
       user: {
         username: "",
         password: ""
