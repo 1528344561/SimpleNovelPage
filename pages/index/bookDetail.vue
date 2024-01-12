@@ -3,10 +3,8 @@
 		<view class="shang">
 			<image class="img" src="../../static/books/book_0.png"></image>
 			<view class="book-info">
-				<view v-html="code">
-					
-				</view>
 				<view class="info-count">
+				<h1>{{book.bookName}}</h1>
 
 						<view style="color: rgba(0,0,0,.4); font-size:32rpx">{{book.authorName}}编写</view>
 						<view class="more-detail">
@@ -18,21 +16,21 @@
 				</view>
 			</view>
 		<view class="mid">
-			<view v-html="code1">
-				
-			</view>
+			<h1>简介</h1>
 			<view class="jianjie">
 				{{book.bookDescription}}
 			</view>
 			<view class="label">
-				<view class="label-item"> {{book.bookTag[0]}}</view>
-				<view class="label-item"> {{book.bookTag[1]}}</view>
+				<view v-for="(item,index) in book.bookTag" :key="index">
+						<view class="label-item" >{{item}}</view>
+				</view>
+				
 			</view>
 		</view>
 		<view>目录<span class="directory-dot"></span>{{capter.totalNum}}</view>
 		<view class="xia">
 			<scroll-view scroll-y="true" >
-				<view class="h" v-for="(item,index) in capter.capterList" :key="item.capterNum">
+				<view class="h" v-for="(item,index) in capter.capterList" :key="index">
 					<text>{{item.capterTitle}}</text>
 				</view>
 			</scroll-view>
@@ -46,8 +44,6 @@
 	export default {
 		data() {
 			return {
-				code:"<h3>测试</h3>",
-				code1:"<h3>内容简介</h3>",
 				book:{
 					id:0,
 					bookName:'测试',
