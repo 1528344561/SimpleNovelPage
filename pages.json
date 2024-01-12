@@ -36,8 +36,13 @@
 		},{
 			"path": "pages/index/read",
 			"style": {
-				"navigationBarTitleText": "SimpleNovel",
-				"transparentTitle":"auto"
+				"navigationBarTitleText": "SimpleNovel"
+				
+			}
+		},{
+			"path": "pages/index/bookDetail",
+			"style": {
+				"navigationBarTitleText": "SimpleNovel"
 				
 			}
 		}
@@ -59,6 +64,14 @@
 			"text": "首页",
 			"iconPath": "static/home_default.png",
 			"selectedIconPath": "static/home_selected.png"
+			// "iconfont": {
+			//   "text": "\ue102",
+			//   "selectedText": "\ue103",
+			//   "fontSize": "17px",
+			//   "color": "#000000",
+			//   "selectedColor": "#0000ff"
+			// },
+			
 		  },{
 			"pagePath": "pages/index/mine",
 			"text": "我的",
