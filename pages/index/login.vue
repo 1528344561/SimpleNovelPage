@@ -15,9 +15,9 @@
 <script >
 	import { reactive, ref } from 'vue'   
 		
-	 formData = ref({
+	const formData = ref({
 		name: '',
-		password: '',
+		password: ''
 	}) 
 	
 	// 触发提交表单 

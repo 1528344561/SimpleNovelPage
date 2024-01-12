@@ -68,5 +68,26 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5": {
+        "title": "demo",
+        "router": {
+            "base": "./"
+        },
+        "devServer": {
+            "port": 8080, //端口号
+            "https":false,
+            "disableHostCheck": true,
+            "proxy": {
+                "/dev-api": {
+                    "target": "https://shop.qishichuangke.cn/index.php?s=/api",
+                    "changeOrigin": true, 
+                    "secure": true, 
+                    "pathRewrite": {
+                        "^/dev-api": "" 
+                    }
+                }
+            }
+        }
+    }
 }
