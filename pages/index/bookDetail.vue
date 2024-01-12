@@ -27,11 +27,11 @@
 				
 			</view>
 		</view>
-		<view>目录<span class="directory-dot"></span>{{capter.totalNum}}章</view>
+		<view>目录<span class="directory-dot"></span>{{chapter.totalNum}}章</view>
 		<view class="xia">
 			<scroll-view scroll-y="true" style="height: 30vh;">
-				<view class="h" v-for="(item,index) in capter.capterList" :key="index">
-					<text>{{item.capterTitle}}</text>
+				<view class="h" v-for="(item,index) in chapter.chapterList" :key="index">
+					<text>{{item.chapterTitle}}</text>
 				</view>
 			</scroll-view>
 		</view>
@@ -41,7 +41,7 @@
 	</view>
 </template>
 <script>
-	import {getCapterListByBook} from '@/api/capter.js'
+	import {getchapterListByBook} from '@/api/chapter.js'
 	import {getBookInfo} from '@/api/book.js'
 
 	export default {
@@ -50,9 +50,9 @@
 			getBookInfo(this.bookId).then(res=>{
 				this.book= res.data
 			})
-			getCapterListByBook(this.bookId).then(res=>{
+			getchapterListByBook(this.bookId).then(res=>{
 				console.log(res.data)
-				this.capter = res.data
+				this.chapter = res.data
 			})
 		},
 		data() {
@@ -67,23 +67,23 @@
 					author:"陈杰",
 					bookDescription:"balabala...................",
 					bookTag:['都市','玄幻'],
-					totalCapterNum:4,
+					totalchapterNum:4,
 				},
-				capter:{
+				chapter:{
 					totalNum:4,
-					capterList:[
+					chapterList:[
 						{
-							capterNum:0,
-							capterTitle:"第一章"
+							chapterNum:0,
+							chapterTitle:"第一章"
 						},{
-							capterNum:1,
-							capterTitle:"第二章"
+							chapterNum:1,
+							chapterTitle:"第二章"
 						},{
-							capterNum:2,
-							capterTitle:"第三章"
+							chapterNum:2,
+							chapterTitle:"第三章"
 						},{
-							capterNum:3,
-							capterTitle:"第四章"
+							chapterNum:3,
+							chapterTitle:"第四章"
 						},
 					]
 				}

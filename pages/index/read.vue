@@ -5,15 +5,15 @@
 
         
         <view class="content">
-            <view class="capter-title-sml">
-            {{ nowCapter.capterTitle }}
+            <view class="chapter-title-sml">
+            {{ nowchapter.chapterTitle }}
             </view>
-            <view class="capter-title-big">
-                {{ nowCapter.capterTitle }}
+            <view class="chapter-title-big">
+                {{ nowchapter.chapterTitle }}
             </view>
             <view class="page-content">
-                <!-- <div :v-html="capter.capterContent"></div> -->
-                <text>{{ nowCapter.capterContent }}</text>
+                <!-- <div :v-html="chapter.chapterContent"></div> -->
+                <text>{{ nowchapter.chapterContent }}</text>
             </view>
         </view>
     </scroll-view>
@@ -24,7 +24,7 @@
 
 <script>
     import {service} from '@/utils/request.js'
-    import {getCapter,getUserReadingCapter} from '@/api/capter.js'
+    import {getchapter,getUserReadingchapter} from '@/api/chapter.js'
     export default{
         onLoad(options){
 			uni.showLoading({
@@ -33,12 +33,12 @@
             console.log(options.bookId)
             console.log(options.bookName)
             this.bookId = options.bookId
-            // getUserReadingCapter()
-            getUserReadingCapter(1,this.bookId).then(res=>{
-                this.nowCapterNum = res.data.userReadingCapter
+            // getUserReadingchapter()
+            getUserReadingchapter(1,this.bookId).then(res=>{
+                this.nowchapterNum = res.data.userReadingchapter
                 
                 // console.log(res.data.)
-                this.showCapter(this.bookId,this.nowCapterNum)
+                this.showchapter(this.bookId,this.nowchapterNum)
                 uni.hideLoading()
             })
         },
@@ -50,8 +50,8 @@
             setTimeout(function () {
                 uni.stopPullDownRefresh();
             }, 1000)
-            if(this.nowCapterNum>1)
-                this.showCapter(this.bookId,this.nowCapterNum-1)
+            if(this.nowchapterNum>1)
+                this.showchapter(this.bookId,this.nowchapterNum-1)
         },
         onReachBottom(){
             this.status = 'loading';
@@ -60,7 +60,7 @@
 			}),
             setTimeout(() => {
 				this.status = 'loading';
-                this.showCapter(this.bookId,this.nowCapterNum+1)
+                this.showchapter(this.bookId,this.nowchapterNum+1)
                 this.scrollTop = 0
 
                 uni.hideLoading()
@@ -71,10 +71,10 @@
             return {
                 userId:1,
                 bookId:-1,
-                nowCapterNum:0,
-                nowCapter:{
-                    capterTitle:'',
-                    capterContent:''
+                nowchapterNum:0,
+                nowchapter:{
+                    chapterTitle:'',
+                    chapterContent:''
                 },
                 PullBottomStatus:"loadmore",
                 oldScrollTop:0,
@@ -85,14 +85,14 @@
             scroll(e){
                 this.oldScrollTop=e.detail.scrollTop
             },
-            showCapter(bookId,capterNum){
-                getCapter(bookId,capterNum).then(res=>{
+            showchapter(bookId,chapterNum){
+                getchapter(bookId,chapterNum).then(res=>{
                     // console.log(res)
-                    this.nowCapter = res.data
-                    this.nowCapter.capterContent = this.nowCapter.capterContent
-                    this.nowCapterNum = capterNum
+                    this.nowchapter = res.data
+                    this.nowchapter.chapterContent = this.nowchapter.chapterContent
+                    this.nowchapterNum = chapterNum
                 })
-                console.log(this.nowCapter)
+                console.log(this.nowchapter)
             },
             getUserInfo(){
                 service().then(res=>{
@@ -113,10 +113,10 @@
     background-size: 100% 100%;
 }
 
-.capter-title-sml{
+.chapter-title-sml{
     font-size: 24rpx;
 }
-.capter-title-big{
+.chapter-title-big{
     font-size: 50rpx;
     font-weight: 600;
 
