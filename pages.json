@@ -40,6 +40,8 @@
 				"transparentTitle":"auto"
 				
 			}
+		},{
+			"path":"pages/index/test"
 		}
 	],
 	"globalStyle": {
