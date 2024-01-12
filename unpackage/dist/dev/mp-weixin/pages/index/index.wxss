@@ -1,0 +1,27 @@
+
+.root{
+	width: 100vw;
+	height: 100vh;
+	background-color: #faf7f7;
+}
+.top-circle-img{
+	display: block;
+	width: 90vw;
+	height: 20vh;
+	margin: 0 auto;
+}
+.top-circle-img image{
+	width: 90vw;
+	height: 20vh;
+}
+.content{
+	width: 90vw;
+	margin: 0 auto;
+}
+.home-title{
+	font-size: 70rpx;
+	font-weight: 500;
+	font-family: "黑体";
+}
+
+

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import {service} from '../../utils/request.js'
+    import {service} from '@/utils/request.js'
     import {getCapter,getUserReadingCapter} from '@/api/capter.js'
     export default{
         onLoad(options){

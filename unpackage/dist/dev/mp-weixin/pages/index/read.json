@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "SimpleNovel",
+  "transparentTitle": "auto",
+  "usingComponents": {
+    "u-rate": "/node-modules/uview-ui/components/u-rate/u-rate"
+  }
+}

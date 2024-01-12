@@ -21,7 +21,7 @@
             },
             books:{
                 type:Array,
-                default:[]
+                // default:[]
             }
         },
         data(){

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-	import bookList from '../../components/bookList.vue'
+	import bookList from '@/components/bookList.vue'
 	import {getBookList} from '@/api/book.js'
 	import {getTopImg} from '@/api/topImg.js'
 	export default{
@@ -34,7 +34,11 @@
 		},
 		onLoad(){
 			getBookList().then(res=>{
+				// res = JSON.parse(res)
+				console.log(res)
+				console.log(typeof res)
 				this.books = res.data
+				console.log(this.books)
 			})
 			getTopImg().then(res=>{
 				this.topImgArr = res.data
@@ -47,7 +51,7 @@
 				topImgArr:[],
 				books:[{
 					id:0,
-					bookImg:'../../static/books/book_0.png',
+					bookImg:'/static/books/book_0.png',
 					bookName:'特工易冷'
 				}
 				],

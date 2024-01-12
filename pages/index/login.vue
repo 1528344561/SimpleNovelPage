@@ -3,7 +3,7 @@
     <view class="root">
 
         <view>
-            <image src="../../static/bg1.jpg" class="bkg-pic">
+            <image src="/static/bg1.jpg" class="bkg-pic">
         </image>
         </view>
         <view class="login-form">
@@ -26,12 +26,12 @@
             <view v-else style="font-size: 25rpx;margin-top: 20rpx;" @click="changeState">已有账号,前去登录</view>
         </view>
 
-        <image src="../../static/bg2.jpg" class="bkg-pic">
+        <image src="/static/bg2.jpg" class="bkg-pic">
         </image>
     </view>
 </template>
 <script>
-import { setDataInfo } from '../../utils/auth'
+import { setDataInfo } from '@/utils/auth'
 
     export default{
 		
@@ -41,8 +41,8 @@ import { setDataInfo } from '../../utils/auth'
                 showText:"登录",
                 flag:0,
                 ico:[
-                    '../../static/eye-close.png',
-                    '../../static/eye-open.png',
+                    '/static/eye-close.png',
+                    '/static/eye-open.png',
                 ],
                 user:{
                     username:"",
@@ -66,11 +66,12 @@ import { setDataInfo } from '../../utils/auth'
             },
             clickLogin(){
                 console.log(this.user)
-                setTimeout(()=>{
-                    uni.showToast({
+                uni.showToast({
                         title:'登陆成功',
                         duration: 2000
-                    });
+                });
+                setTimeout(()=>{
+                    
                     setDataInfo('token','widjaoiwjdioawdawdawdaw')
                     uni.switchTab({
                         url:'/pages/index/index'

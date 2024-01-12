@@ -1,0 +1,18 @@
+
+.book-list-root.data-v-59bdcbe2{
+    margin-top: 10rpx;
+}
+.book-list.data-v-59bdcbe2{
+    width: 90vw;
+	display: flex;
+	overflow-x: auto;
+}
+.book-item.data-v-59bdcbe2{
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	padding: 20rpx 10rpx 0 0;
+	/* align-items: center; */
+}
+
