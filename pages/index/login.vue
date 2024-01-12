@@ -1,3 +1,4 @@
+
 <template>
     <view class="root">
 
@@ -109,3 +110,4 @@ import { setDataInfo } from '../../utils/auth'
     background-color: #247943;
 }
 </style>
+
