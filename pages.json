@@ -37,13 +37,19 @@
 			"path": "pages/index/read",
 			"style": {
 				"navigationBarTitleText": "SimpleNovel",
-				"transparentTitle":"auto",
-				"enablePullDownRefresh":true
+				"transparentTitle":"auto"
 				
 			}
 		},{
-			"path":"pages/index/test"
-		}
+			"path": "pages/index/bookDetail",
+			"style": {
+				"navigationBarTitleText": "SimpleNovel"
+				
+			}
+		},
+			{
+				"path":"pages/index/test"
+			}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -62,6 +68,14 @@
 			"text": "首页",
 			"iconPath": "static/home_default.png",
 			"selectedIconPath": "static/home_selected.png"
+			// "iconfont": {
+			//   "text": "\ue102",
+			//   "selectedText": "\ue103",
+			//   "fontSize": "17px",
+			//   "color": "#000000",
+			//   "selectedColor": "#0000ff"
+			// },
+			
 		  },{
 			"pagePath": "pages/index/login",
 			"text": "我的",
