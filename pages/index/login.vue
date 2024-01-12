@@ -8,11 +8,11 @@
 				 <uni-easyinput type="password" v-model="formData.password" placeholder="请输入密码" />
 			</uni-forms-item>
 		</uni-forms> -->
-		<button @click="submit">提交</button>
+		<button @click="save">登录</button>
 	</view>
 </template>
 
-<script setup>
+<script >
 	import { reactive, ref } from 'vue'   
 		
 	 formData = ref({
@@ -21,7 +21,12 @@
 	}) 
 	
 	// 触发提交表单 
-	const submit = ()=>{ 
-      
+	save(){
+		setTimeout(()=>{
+			uni.showToast({
+				title:'登录成功',
+				duration:2000
+			})
+		},2000)
 	}
 </script> 
