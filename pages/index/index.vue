@@ -23,28 +23,24 @@
 <script>
 	import bookList from '../../components/bookList.vue'
 	import {getBookList} from '@/api/book.js'
-	// import {Vue} from 'vue'
-	// import {get}
+	import {getTopImg} from '@/api/topImg.js'
 	export default{
 		components:{
 			bookList
 		},
 		onShow(){
 
-			// service().then(res=>{
-            //         console.log(res)
-            //     }).catch(err=>{
-            //         console.log(err)
-            //     })
 			
 		},
 		onLoad(){
 			getBookList().then(res=>{
 				this.books = res.data
+			})
+			getTopImg().then(res=>{
+				this.topImgArr = res.data
 			}).catch(err=>{
 
 			})
-			console.log(Vue.version)
 		},
 		data(){
 			return{
