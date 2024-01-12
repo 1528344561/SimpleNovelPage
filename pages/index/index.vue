@@ -23,7 +23,8 @@
 <script>
 	import bookList from '../../components/bookList.vue'
 	import {getBookList} from '@/api/book.js'
-	import {get}
+	// import {Vue} from 'vue'
+	// import {get}
 	export default{
 		components:{
 			bookList
@@ -43,6 +44,7 @@
 			}).catch(err=>{
 
 			})
+			console.log(Vue.version)
 		},
 		data(){
 			return{
