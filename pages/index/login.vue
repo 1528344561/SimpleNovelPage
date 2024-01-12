@@ -41,8 +41,8 @@ import { setDataInfo } from '@/utils/auth'
                 showText:"登录",
                 flag:0,
                 ico:[
-                '../../static/by.png',
-                    '../../static/zy.png',
+                '/static/by.png',
+                    '/static/zy.png',
                 ],
                 user:{
                     username:"",

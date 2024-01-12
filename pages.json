@@ -37,7 +37,8 @@
 			"path": "pages/index/read",
 			"style": {
 				"navigationBarTitleText": "SimpleNovel",
-				"transparentTitle":"auto"
+				"transparentTitle":"auto",
+				"enablePullDownRefresh":true
 				
 			}
 		},{
