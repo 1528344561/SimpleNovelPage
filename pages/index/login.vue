@@ -73,7 +73,7 @@ import { setDataInfo } from '../../utils/auth'
                     });
                     setDataInfo('token','widjaoiwjdioawdawdawdaw')
                     uni.switchTab({
-                        url:'/pages/index/classes'
+                        url:'/pages/index/index'
                     })
                 },2000)
             }
