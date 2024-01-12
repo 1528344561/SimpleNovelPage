@@ -34,7 +34,7 @@
                 // console.log(item)
   
                 uni.navigateTo({
-                    url:'/pages/index/read'+"?bookName="+item.bookName+"&bookId="+item.id
+                    url:'/pages/index/bookDetail?'+"bookId="+item.id
                 })
             }
         }

@@ -6,3 +6,7 @@ export function getUserReadingCapter(userId,bookId){
     return service(`/userCapter?bookId=${bookId}&userId=${userId}`,'GET')
 
 }
+export function getCapterListByBook(bookId){
+    return service(`/capterTitles?bookId=${bookId}`,'GET')
+
+}

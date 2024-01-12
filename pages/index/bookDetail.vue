@@ -1,23 +1,23 @@
 <template>
 	<view class="root">
 		<view class="shang">
-			<image class="img" src="../../static/books/book_0.png"></image>
+			<image class="img" :src="book.bookImg"></image>
 			<view class="book-info">
 				<view class="info-count">
 				<h1>{{book.bookName}}</h1>
 
-						<view style="color: rgba(0,0,0,.4); font-size:32rpx">{{book.authorName}}编写</view>
+						<view style="color: rgba(0,0,0,.4); font-size:32rpx">{{book.author}} / 著</view>
 						<view class="more-detail">
-							<view class="info-num">{{book.wordCnt}}</view><view class="info-text">万字</view>
+							<view class="info-num">{{book.wordCnt}} </view><view class="info-text"> 万字</view>
 							<view class="info-division" style="color: rgba(0,0,0,.4); font-size:32rpx">|</view>
-							<view class="info-num">{{book.ReadingNum}}</view><view class="info-text">万人在读</view>
+							<view class="info-num">{{book.ReadingPeopleNum}}</view><view class="info-text"> 万人在读</view>
 						</view>
 					</view>
 				</view>
 			</view>
 		<view class="mid">
-			<h1>简介</h1>
-			<view class="jianjie">
+			<h1>作品简介</h1>
+			<view class="book-description">
 				{{book.bookDescription}}
 			</view>
 			<view class="label">
@@ -27,32 +27,47 @@
 				
 			</view>
 		</view>
-		<view>目录<span class="directory-dot"></span>{{capter.totalNum}}</view>
+		<view>目录<span class="directory-dot"></span>{{capter.totalNum}}章</view>
 		<view class="xia">
-			<scroll-view scroll-y="true" >
+			<scroll-view scroll-y="true" style="height: 30vh;">
 				<view class="h" v-for="(item,index) in capter.capterList" :key="index">
 					<text>{{item.capterTitle}}</text>
 				</view>
 			</scroll-view>
 		</view>
 		<view class="buttom">
-			<button>开始阅读</button>
+			<button @click="gotoPage">开始阅读</button>
 		</view>
 	</view>
 </template>
 <script>
+	import {getCapterListByBook} from '@/api/capter.js'
+	import {getBookInfo} from '@/api/book.js'
+
 	export default {
+		onLoad(options){
+			this.bookId = options.bookId
+			getBookInfo(this.bookId).then(res=>{
+				this.book= res.data
+			})
+			getCapterListByBook(this.bookId).then(res=>{
+				console.log(res.data)
+				this.capter = res.data
+			})
+		},
 		data() {
 			return {
+				bookId:-1,
 				book:{
 					id:0,
 					bookName:'测试',
 					bookImg:'/static/books/book_0.png',
 					wordCnt:140,
-					ReadingNum:99,
-					authorName:"陈杰",
+					ReadingPeopleNum:99,
+					author:"陈杰",
 					bookDescription:"balabala...................",
-					bookTag:['都市','玄幻']
+					bookTag:['都市','玄幻'],
+					totalCapterNum:4,
 				},
 				capter:{
 					totalNum:4,
@@ -75,7 +90,13 @@
 			}
 		},
 		methods: {
-			
+			gotoPage(){
+                // console.log(item)
+  
+                uni.navigateTo({
+                    url:'/pages/index/read?'+"bookId="+this.bookId
+                })
+            }
 		}
 	}
 </script>
@@ -108,21 +129,24 @@
 	overflow:hidden;
 	display: block;
 }
-.img{
+image{
 	height: 300rpx;
-	width: 250rpx;
-	border-radius: 16rpx;
+	width: 200rpx;
+	border-radius: 8rpx;
+	border:1px #b2b2b2 solid;
 }
 .jianjie{
 	margin-top: 10rpx;
 	padding: 10rpx;
 }
 .mid{
-	height: 300rpx;
-	width: 100vw;
+	/* height: 300rpx; */
 	padding: 20rpx auto;
 	background-color: #fff;
 	display: block;
+	width: 90vw;
+	/* border--color: #e8e8e8; */
+	border-top: 22rpx rgb(248, 248, 248) solid;
 }
 .label{
 	display: flex;
@@ -165,6 +189,9 @@
 }
 .info-division{
 	padding: 10rpx;
+}
+.book-description{
+	width: 90vw
 }
 .buttom{
 	position: fixed;
