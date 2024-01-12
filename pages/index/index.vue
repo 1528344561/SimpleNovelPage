@@ -1,11 +1,11 @@
 <template>
+	
 	<view class="root">
 		<view class="top-circle-img">
 			<swiper circular="true" indicator-dots="true" autoplay="true" interval="5000">
 				<swiper-item class="sw-item" v-for="(item,index) in topImgArr" :key="index">
 					<image class="sw-img" :src="item" mode=""></image>
 				</swiper-item>
-				
 			</swiper>
 		</view>
 		<view class="content">
