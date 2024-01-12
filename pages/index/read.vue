@@ -24,6 +24,9 @@
     import {getCapter,getUserReadingCapter} from '@/api/capter.js'
     export default{
         onLoad(options){
+			uni.showLoading({
+				title:'正在加载中...'
+			}),
             console.log(options.bookId)
             console.log(options.bookName)
             this.bookId = options.bookId
@@ -32,7 +35,8 @@
                 this.nowCapterId = res.data.userReadingCapter
                 // console.log(res.data.)
                 getCapter(this.bookId,this.nowCapterId).then(res=>{
-                    this.nowCapter = res.data 
+                    this.nowCapter = res.data
+					uni.hideLoading()
                 })
             })
         },
