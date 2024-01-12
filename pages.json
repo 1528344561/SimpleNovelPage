@@ -45,6 +45,8 @@
 				"navigationBarTitleText": "SimpleNovel"
 				
 			}
+		},{
+			"path":"pages/index/test"
 		}
 	],
 	"globalStyle": {
@@ -73,7 +75,7 @@
 			// },
 			
 		  },{
-			"pagePath": "pages/index/mine",
+			"pagePath": "pages/index/login",
 			"text": "我的",
 			"iconPath": "static/user_default.png",
 			"selectedIconPath": "static/user_selected.png"
