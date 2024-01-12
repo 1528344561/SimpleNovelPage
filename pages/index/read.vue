@@ -2,14 +2,15 @@
     <view class="root">
         <view class="content">
             <view class="capter-title-sml">
-            {{ capter.capterTitle }}
+            {{ nowCapter.capterTitle }}
             </view>
             <view class="capter-title-big">
-                {{ capter.capterTitle }}
+                {{ nowCapter.capterTitle }}
             </view>
             <view class="page-content">
                 <!-- <div :v-html="capter.capterContent"></div> -->
-                {{ capter.capterContent }}
+                
+                <text>{{ nowCapter.capterContent }}</text>
             </view>
         </view>
 
@@ -19,20 +20,41 @@
 </template>
 
 <script>
+    import {service} from '../../utils/request.js'
+
     export default{
+        onLoad(options){
+            console.log(options.bookId)
+            console.log(options.bookName)
+            this.nowBookId = options.bookId
+        },
         onShow(){
-            // this.capter.capterContent=this.capter.capterContent.replace('\n','<br>');
+            for(var i=0;i<this.books.length;i++){
+                console.log(this.books[i],this.nowBookId)
+                if(this.books[i].id==this.nowBookId){
+                    this.showContent(i)
+                    break;
+                }
+            }
+        },
+        props:{
+            bookName:""
         },
         data(){
             return {
-                book:{
+                nowBookId:-1,
+                nowCapter:{},
+                books:[
+                {
                     id:0,
                     bookname:"抗战",
                     capterTotalNum:10,
-                    capterUserNum:1,
-                },
-                capter:{
-                    capterNum:1,
+                    userReadingCatper:0,
+                    capter:{
+                        capterTotalNum:1,
+                        capters:[
+                            {
+                                capterNum:1,
                     capterTitle:'第一章 民团神枪手',
                     capterContent:`
             
@@ -49,13 +71,30 @@
             “铁军！铁军！”  父亲冲过来，拼命的摇晃王铁军的脑袋，一边不停的大声呼叫，一双怒眼带着一丝悲哀的泪光，生怕儿子死在这里。  
             
             “咳咳！”  王铁军咳喘了几声，缓缓睁开眼睛。  眼睛刚刚睁开，旁边不远一个民团的被子弹击中，鲜血溅射在他的脸上，嘴上。  温热的血腥味，枪炮的声音，接连不断的尸体倒下，让他猛然一怔。                     
-                    `,
+                    `
+                            }
+                        ]
+                    }
                 }
+                ],
+                
+            }
+        },
+        methods:{
+            showContent(bookId){
+                this.nowCapter = this.books[bookId].capter.capters[this.books[bookId].userReadingCatper]
+            },
+            getUserInfo(){
+                service().then(res=>{
+                    console.log(res)
+                }).catch(err=>{
+                    console.log(err)
+                })
             }
         }
     }
 </script>
-
+    
 <style scoped>
 .root{
     width: 100vw;
@@ -65,6 +104,7 @@
 }
 .content{
     width: 95vw;
+    height: calc(100vh - var(--status-bar-height));
     margin: 0 auto;
 }
 .capter-title-sml{
@@ -79,6 +119,6 @@
 }
 .page-content {
     white-space: pre-wrap;
+    /*  */
 }
-
 </style>

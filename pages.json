@@ -3,8 +3,31 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "SimpleNovel",
+				
+				"app-plus":{
+					"titleNview":{
+						"buttons":[
+							{
+								"text": "我的设备"
+						
+							}
+						],
+						"backButton": {
+							"background": "#00FF00"
+						},
+
+						"type": "transparent",
+						"searchInput": {
+							"backgroundColor": "#fff",
+							"borderRadius": "6px", 
+							"placeholder": "请输入搜索内容",
+							"disabled": true 
+						}
+					}
+				}
 			}
+			
 		},{
 			"path": "pages/index/login",
 			"style": {
@@ -14,6 +37,7 @@
 			"path": "pages/index/read",
 			"style": {
 				"navigationBarTitleText": "SimpleNovel"
+				
 			}
 		}
 	],
