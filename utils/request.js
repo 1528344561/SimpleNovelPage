@@ -1,6 +1,7 @@
 // let url=''
 import systemUrl from '@/system.config.js'
 export const service = (url,method)=>{
+   
     // new Promise (回调函数有两个参数  resolve -> 成功时执行, reject ->失败时执行) 内部过程是一个同步过程
     // promise 还有两个异步的方法分别对应上边这两个回调参数
     //异步方法可以拿到对应回调参数所取到的数据
