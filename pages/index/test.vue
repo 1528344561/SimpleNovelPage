@@ -14,7 +14,6 @@
             },
             tolower(){
                 alert('hhhh')
-
                 this.loadingFlag++
             }
         }
@@ -29,7 +28,7 @@
             @scrolltolower="tolower"
             lower-threshold="10"
             @scroll="watchScroll">  
-        
+            
         <view>
         <view v-if="loadingFlag == 1">数据加载中...</view>
         <view v-if="loadingFlag == 2">没有更多的数据...</view>
