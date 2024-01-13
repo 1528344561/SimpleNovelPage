@@ -77,7 +77,7 @@
 			// },
 			
 		  },{
-			"pagePath": "pages/index/login",
+			"pagePath": "pages/index/mine",
 			"text": "我的",
 			"iconPath": "static/user_default.png",
 			"selectedIconPath": "static/user_selected.png"

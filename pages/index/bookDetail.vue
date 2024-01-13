@@ -36,13 +36,14 @@
 			</scroll-view>
 		</view>
 		<view class="buttom">
-			<button @click="gotoPage">开始阅读</button>
+			<button @click="checkLogin">开始阅读</button>
 		</view>
 	</view>
 </template>
 <script>
 	import {getchapterListByBook} from '@/api/chapter.js'
 	import {getBookInfo} from '@/api/book.js'
+	import {getDataInfo} from '@/utils/auth.js'
 
 	export default {
 		onLoad(options){
@@ -57,6 +58,7 @@
 		},
 		data() {
 			return {
+				token:undefined,
 				bookId:-1,
 				book:{
 					id:0,
@@ -96,7 +98,45 @@
                 uni.navigateTo({
                     url:'/pages/index/read?'+"bookId="+this.bookId
                 })
-            }
+            },
+			checkLogin(){
+				if(!this.token){
+					this.getToken();
+				}else{
+					this.gotoPage()
+				}
+			},
+			goLogin(){
+                console.log("触发了")
+                uni.navigateTo({
+                    url:'/pages/index/login'
+                })
+            },
+			getToken(){
+                let _that = this
+                this.token = getDataInfo('token') 
+                console.log(this.token)
+                if(this.token){
+                    return console.log('ok')
+                }else{
+                    uni.showModal({
+                        title:'提示',
+                        content:'你还没有登录',
+                        success:function(res){
+                            if(res.confirm){
+                                console.log('点击了确定')
+                                // this.$options.methods.goLogin()
+                                // this.$options.methods.test2.bind(this)();
+                                _that.goLogin()
+                                // this.goLogin()
+                            }else{
+                                console.log('点击了取消')
+
+                            }
+                        }
+                    })
+                }
+			}
 		}
 	}
 </script>

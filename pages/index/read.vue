@@ -35,8 +35,8 @@
             this.bookId = options.bookId
             // getUserReadingchapter()
             getUserReadingchapter(1,this.bookId).then(res=>{
-                this.nowchapterNum = res.data.userReadingchapter
-                
+                // this.nowchapterNum = res.data.userReadingchapter
+                this.nowchapterNum =1
                 // console.log(res.data.)
                 this.showchapter(this.bookId,this.nowchapterNum)
                 uni.hideLoading()

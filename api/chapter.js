@@ -3,7 +3,7 @@ export function getchapter(bookId,chapterNum){
     return service(`/chapter?bookId=${bookId}&chapterNum=${chapterNum}`,'GET')
 }
 export function getUserReadingchapter(userId,bookId){
-    return service(`/userchapter?bookId=${bookId}&userId=${userId}`,'GET')
+    return service(`/userChapter?bookId=${bookId}&userId=${userId}`,'GET')
 
 }
 export function getchapterListByBook(bookId){
