@@ -40,15 +40,15 @@
 				this.books = res.data
 				console.log(this.books)
 			})
-			getTopImg().then(res=>{
-				this.topImgArr = res.data
-			}).catch(err=>{
+			// getTopImg().then(res=>{
+			// 	this.topImgArr = res.data
+			// }).catch(err=>{
 
-			})
+			// })
 		},
 		data(){
 			return{
-				topImgArr:[],
+				topImgArr:['/static/top_img_0.jpg','/static/top_img_1.png'],
 				books:[{
 					id:0,
 					bookImg:'/static/books/book_0.png',

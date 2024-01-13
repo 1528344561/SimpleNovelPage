@@ -31,7 +31,7 @@
 		<view class="xia">
 			<scroll-view scroll-y="true" style="height: 30vh;">
 				<view class="h" v-for="(item,index) in chapter.chapterList" :key="index">
-					<text>{{item.chapterTitle}}</text>
+					<text>{{item}}</text>
 				</view>
 			</scroll-view>
 		</view>
@@ -53,7 +53,8 @@
 			})
 			getchapterListByBook(this.bookId).then(res=>{
 				console.log(res.data)
-				this.chapter = res.data
+				this.chapter.chapterList = res.data
+				this.totalNum = this.chapter.chapterList.length
 			})
 		},
 		data() {

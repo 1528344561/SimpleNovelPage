@@ -68,6 +68,7 @@
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
+
 	"tabBar": {
 		"list": [
 		  {
@@ -75,13 +76,7 @@
 			"text": "首页",
 			"iconPath": "static/home_default.png",
 			"selectedIconPath": "static/home_selected.png"
-			// "iconfont": {
-			//   "text": "\ue102",
-			//   "selectedText": "\ue103",
-			//   "fontSize": "17px",
-			//   "color": "#000000",
-			//   "selectedColor": "#0000ff"
-			// },
+	
 			
 		  },{
 			"pagePath": "pages/index/mine",
@@ -95,5 +90,5 @@
 			  "selectedIconPath": "static/tabBar10.png"
 		  }
 		]
-	  }
+	}
 }

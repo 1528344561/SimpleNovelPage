@@ -16,6 +16,9 @@ export const service = (url,method)=>{
         uni.request({
             url:systemUrl.developUrl+url,
             methods:method,//请求方式
+            header:{
+                'Access-Control-Allow-Origin':systemUrl.developUrl
+            },
             success:function(res){
                 resolve(res.data)
             },
