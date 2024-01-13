@@ -8,3 +8,7 @@ export function getBookInfo(bookId){
     // return service(`/bookInfo?bookId=${bookId}`,'GET')
     return service(`/book/info?bookId=${bookId}`,'GET')
 }
+export function getBookListByBookName(bookName){
+    // return service(`/bookInfo?bookId=${bookId}`,'GET')
+    return service(`/book/list?bookName=${bookName}`,'GET')
+}

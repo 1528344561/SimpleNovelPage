@@ -242,6 +242,8 @@ li:nth-child(3){
     </view>
 <template>
 ```
+
+绑定事件要用@ 不要用:
 # Uniapp
 ## 生命周期
 

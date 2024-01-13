@@ -1,6 +1,15 @@
 <template>
+	
 	<view class="root">
-		<scroll-view class="list"
+		<u-search 
+			placeholder="搜索书籍" 
+			v-model="keyword" 
+			clearabled
+			@custom="search"
+			@clear="search"
+		></u-search>
+		<view class="main-body">
+			<scroll-view class="list"
 		scroll-y >
 		<!-- 动态绑定class要满足为真的条件才生效  item.id-->
 			<view class="li-item" 
@@ -11,6 +20,9 @@
 				{{item.tagName}}
 			</view>
 		</scroll-view>
+		<view v-if="!goodlist.length" style="width: 50%; margin: 30vh auto;">
+			<u-empty text="空空如也~" mode="search"></u-empty>
+		</view>	
 		<view class="booklist">
 			<view class="gd-item" v-for="item in goodlist" :key="item.id">
 				<view @click="gotoPage(item)" class="book-list-item">
@@ -24,12 +36,13 @@
 				</view>
 			</view>
 		</view>
+		</view>
 	</view>
 </template>
 
 <script>
 	import {getTagList,getBookByTagList} from '@/api/tag.js'
-	import {getBookList} from '@/api/book.js'
+	import {getBookList,getBookListByBookName} from '@/api/book.js'
 	export default {
 		onLoad(){
 			this.copylist=[
@@ -40,9 +53,10 @@
 				this.navList=this.navList.concat(res.data)
 				console.log(this.navList)
 			})
-			getBookList().then(res=>{
-				this.goodlist =  res.data
-			})
+			// getBookList().then(res=>{
+			// 	this.goodlist =  res.data
+			// })
+			this.search()
 		},
 		data() {
 			return {
@@ -56,7 +70,8 @@
 				],
 				copylist:[],
 				cartList:[],
-				goodlist:[]
+				goodlist:[],
+				keyword:'',
 			}
 		},
 		//uniapp中的生命周期函数 页面渲染的时候加载执行里边的逻辑或方法
@@ -65,9 +80,16 @@
 		//只要进入界面就会执行 onShow()
 		methods: {
 			change(index,id){
-				getBookByTagList(id).then(res=>{
-					this.goodlist = res.data
-				})
+				if(id!=-1)
+				{
+					getBookByTagList(id).then(res=>{
+						this.goodlist = res.data
+					})
+				}else{
+					getBookList().then(res=>{
+						this.goodlist = res.data
+					})
+				}
 				this.indent=index
 				// this.goodlist=[...this.copylist]
 				// //箭头函数一个参数 可以省略括号 数组.filter(回调函数) 过滤方法但会的是一个新数组
@@ -89,13 +111,26 @@
                 uni.navigateTo({
                     url:'/pages/index/bookDetail?'+"bookId="+item.id
                 })
-            }
+			},
+			search(){
+				// debugger
+				// console.log(bookName)
+				if(this.search){
+						getBookListByBookName(this.keyword).then(res=>{
+							this.goodlist = res.data
+							// console.log(res.data)
+						})
+				}
+			}
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 .root{
+	/* display: flex; */
+}
+.main-body{
 	display: flex;
 }
 .list{

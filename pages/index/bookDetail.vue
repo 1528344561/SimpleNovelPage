@@ -24,7 +24,7 @@
 				<!-- {{ book.bookTag }} -->
 				
 				<view v-for="(item,index) in bookTag" :key="index">
-						<view class="label-item" >{{item}}</view>
+						<view class="label-item" @click="goToClassPage">{{item}}</view>
 				</view>
 				
 			</view>
@@ -122,6 +122,9 @@
                     url:'/pages/index/login'
                 })
             },
+			goToClassPage(){
+
+			},
 			getToken(){
                 let _that = this
                 this.token = getDataInfo('token') 
