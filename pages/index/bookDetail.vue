@@ -10,7 +10,7 @@
 						<view class="more-detail">
 							<view class="info-num">{{book.wordCnt}} </view><view class="info-text"> 万字</view>
 							<view class="info-division" style="color: rgba(0,0,0,.4); font-size:32rpx">|</view>
-							<view class="info-num">{{book.ReadingPeopleNum}}</view><view class="info-text"> 万人在读</view>
+							<view class="info-num">{{book.readingPeopleNum}}</view><view class="info-text"> 万人在读</view>
 						</view>
 					</view>
 				</view>
@@ -20,8 +20,10 @@
 			<view class="book-description">
 				{{book.bookDescription}}
 			</view>
-			<view class="label">
-				<view v-for="(item,index) in book.bookTag" :key="index">
+			<view class="label" style="height: 50rpx;">
+				<!-- {{ book.bookTag }} -->
+				
+				<view v-for="(item,index) in bookTag" :key="index">
 						<view class="label-item" >{{item}}</view>
 				</view>
 				
@@ -44,17 +46,23 @@
 	import {getchapterListByBook} from '@/api/chapter.js'
 	import {getBookInfo} from '@/api/book.js'
 	import {getDataInfo} from '@/utils/auth.js'
+	import {getBookTag} from'@/api/tag.js'
 
 	export default {
 		onLoad(options){
 			this.bookId = options.bookId
+			this.token = getDataInfo('token')
 			getBookInfo(this.bookId).then(res=>{
-				this.book= res.data
+				this.book = res.data
 			})
 			getchapterListByBook(this.bookId).then(res=>{
 				console.log(res.data)
 				this.chapter.chapterList = res.data
 				this.totalNum = this.chapter.chapterList.length
+			})
+			getBookTag(this.bookId).then(res=>{
+				this.bookTag = res.data
+				console.log(this.book)
 			})
 		},
 		data() {
@@ -66,12 +74,13 @@
 					bookName:'测试',
 					bookImg:'/static/books/book_0.png',
 					wordCnt:140,
-					ReadingPeopleNum:99,
+					readingPeopleNum:99,
 					author:"陈杰",
 					bookDescription:"balabala...................",
 					bookTag:['都市','玄幻'],
 					totalchapterNum:4,
 				},
+				bookTag:[],
 				chapter:{
 					totalNum:4,
 					chapterList:[
