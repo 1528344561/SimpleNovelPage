@@ -1,30 +1,35 @@
 <template>
     <view class="root">
-        <scroll-view scroll-y scroll-with-animation 
-        @scroll="scroll" :scroll-top="scrollTop">
+        <view class="main-content">
+            <scroll-view scroll-y scroll-with-animation 
+                @scroll="scroll" :scroll-top="scrollTop">
 
-        
-        <view class="content">
-            <view class="chapter-title-sml">
-            {{ nowchapter.chapterTitle }}
-            </view>
-            <view class="chapter-title-big">
-                {{ nowchapter.chapterTitle }}
-            </view>
-            <view class="page-content">
-                <!-- <div :v-html="chapter.chapterContent"></div> -->
-                <text>{{ nowchapter.chapterContent }}</text>
-            </view>
+                
+                    <view class="content">
+                    <view class="chapter-title-sml">
+                    {{ nowchapter.chapterTitle }}
+                    </view>
+                    <view class="chapter-title-big">
+                        {{ nowchapter.chapterTitle }}
+                    </view>
+                    <view v-html="nowchapter.chapterContent"></view>
+                    <!-- <view class="page-content">
+                        <text>{{ nowchapter.chapterContent }}</text>
+                    </view> -->
+                </view>
+            </scroll-view>
         </view>
-    </scroll-view>
-    <u-loadmore :status="PullBottomStatus" />
+    <u-loadmore :status="PullBottomStatus" iconType="flower"/>
+	
+    <!-- <uni-load-more :status="PullBottomStatus"></uni-load-more> -->
         <!-- <u-button>按钮</u-button> -->
     </view>
 </template>
 
 <script>
     import {service} from '@/utils/request.js'
-    import {getchapter,getUserReadingchapter} from '@/api/chapter.js'
+    import {getchapter,getUserReadingchapter,getchapterListByBook} from '@/api/chapter.js'
+
     export default{
         onLoad(options){
 			uni.showLoading({
@@ -33,17 +38,19 @@
             console.log(options.bookId)
             console.log(options.bookName)
             this.bookId = options.bookId
-            // getUserReadingchapter()
-            getUserReadingchapter(1,this.bookId).then(res=>{
-                // this.nowchapterNum = res.data.userReadingchapter
-                this.nowchapterNum =1
-                // console.log(res.data.)
+            getchapterListByBook(this.bookId).then(res=>{
+                this.chapter.capterList = res.data
+                this.chapter.totalNum = this.chapter.capterList.length
+
+                this.nowchapterNum = 1
                 this.showchapter(this.bookId,this.nowchapterNum)
-                uni.hideLoading()
             })
+
+            
+
         },
         onShow(){
-
+            
         }, 
         onPullDownRefresh() {
             // console.log('refresh');
@@ -61,9 +68,10 @@
             setTimeout(() => {
 				this.status = 'loading';
                 this.showchapter(this.bookId,this.nowchapterNum+1)
-                this.scrollTop = 0
+                this.scrollTop = -5
 
                 uni.hideLoading()
+                this.PullBottomStatus="loadmore"
 			}, 1200)
 
         },
@@ -71,11 +79,16 @@
             return {
                 userId:1,
                 bookId:-1,
-                nowchapterNum:0,
+                nowchapterNum:1,
                 nowchapter:{
                     chapterTitle:'',
                     chapterContent:''
                 },
+                chapter:{
+                    totalNum:0,
+                    capterList:[]
+                },
+
                 PullBottomStatus:"loadmore",
                 oldScrollTop:0,
                 scrollTop:0
@@ -86,12 +99,20 @@
                 this.oldScrollTop=e.detail.scrollTop
             },
             showchapter(bookId,chapterNum){
-                getchapter(bookId,chapterNum).then(res=>{
+                if(chapterNum<this.chapter.totalNum){
+                    getchapter(bookId,chapterNum).then(res=>{
+                    this.scrollTop = 0
                     // console.log(res)
                     this.nowchapter = res.data
-                    this.nowchapter.chapterContent = this.nowchapter.chapterContent
+                    // this.nowchapter.chapterContent = this.nowchapter.chapterContent
                     this.nowchapterNum = chapterNum
-                })
+                    uni.hideLoading()
+                    })
+                }else{
+                    this.PullBottomStatus="nomore"
+                    uni.hideLoading()
+                }
+
                 console.log(this.nowchapter)
             },
             getUserInfo(){
@@ -123,10 +144,15 @@
     text-align: center;
     /* margin:0 auto; */
 }
+.main-content{
+    box-sizing: border-box;
+    /* padding: 0 0 60rpx 0; */
+}
 .content{
     width: 95vw;
-    height: calc(100vh - var(--status-bar-height));
+    height:100vh;
     margin: 0 auto;
+
     /* animation-name: bounce; 
     animation-duration: 3s; 
     animation-iteration-count: infinite; */
