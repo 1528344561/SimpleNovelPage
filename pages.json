@@ -49,6 +49,13 @@
 		},
 			{
 				"path":"pages/index/test"
+			},
+			{
+				"path" : "pages/index/classify",
+				"style" : 
+				{
+					"navigationBarTitleText" : "分类"
+				}
 			}
 	],
 	"globalStyle": {
@@ -81,6 +88,11 @@
 			"text": "我的",
 			"iconPath": "static/user_default.png",
 			"selectedIconPath": "static/user_selected.png"
+		  },{
+			  "pagePath": "pages/index/classify",
+			  "text": "分类",
+			  "iconPath": "static/tabBar9.png",
+			  "selectedIconPath": "static/tabBar10.png"
 		  }
 		]
 	  }
