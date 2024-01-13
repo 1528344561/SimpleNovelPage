@@ -1,12 +1,10 @@
 <template>
     <view class="root">
-        {{ nowchapterNum }}
         <view class="main-content">
             <scroll-view scroll-y scroll-with-animation 
                 @scroll="scroll" :scroll-top="scrollTop" class="scroll-content">
 
-                    
-                
+
                     <view class="content">
                     <view class="chapter-title-sml">
                     {{ nowchapter.chapterTitle }}
@@ -42,10 +40,11 @@
             this.bookId = options.bookId
             getchapterListByBook(this.bookId).then(res=>{
                 this.chapter.capterList = res.data
+                // console.log(res.data)
                 this.chapter.totalNum = this.chapter.capterList.length
 
-                this.nowchapterNum = 1
-                this.showchapter(this.bookId,this.nowchapterNum)
+                this.nowChapterNum = 1
+                this.showchapter(this.bookId,this.nowChapterNum)
             })
 
             
@@ -55,11 +54,13 @@
             
         }, 
         onPullDownRefresh() {
+            let _that = this
             console.log('refresh');
             setTimeout(function () {
                 uni.stopPullDownRefresh();
-                if(this.nowchapterNum>1){
-                    this.showchapter(this.bookId,this.nowchapterNum-1)
+                console.log(_that.nowChapterNum)
+                if(_that.nowChapterNum>1){
+                    _that.showchapter(_that.bookId,_that.nowChapterNum-1)
                 }
                 else{
                     uni.showToast({
@@ -79,9 +80,9 @@
 				title:'正在加载中...'
 			}),
             setTimeout(() => {
-                this.showchapter(this.bookId,this.nowchapterNum+1)
-                this.scrollTop = -150
-
+                this.showchapter(this.bookId,this.nowChapterNum+1)
+                this.scrollTop = -999
+                console.log(this.nowChapterNum)
                 uni.hideLoading()
 			}, 1200)
 
@@ -90,7 +91,7 @@
             return {
                 userId:1,
                 bookId:-1,
-                nowchapterNum:1,
+                nowChapterNum:1,
                 nowchapter:{
                     chapterTitle:'',
                     chapterContent:''
@@ -116,7 +117,7 @@
                     // console.log(res)
                     this.nowchapter = res.data
                     // this.nowchapter.chapterContent = this.nowchapter.chapterContent
-                    this.nowchapterNum = chapterNum
+                    this.nowChapterNum = chapterNum
                     this.PullBottomStatus="loadmore"
 
                     uni.hideLoading()
