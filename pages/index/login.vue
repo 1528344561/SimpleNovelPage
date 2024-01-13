@@ -71,7 +71,7 @@ import { setDataInfo } from '@/utils/auth'
                         duration: 2000
                 });
                 setTimeout(()=>{
-                    
+                    setDataInfo('username',this.user.username)
                     setDataInfo('token','widjaoiwjdioawdawdawdaw')
                     uni.switchTab({
                         url:'/pages/index/index'
