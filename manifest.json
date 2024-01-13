@@ -97,7 +97,7 @@
             "https":false,
 			"proxy":{
 				"/api":{
-					"target":"http://192.168.4364:8899",
+					"target":"http://192.168.43.64:8899",
 					"changeOrigin":true,
 					"secure":false,
 					"pathRewrite":{
